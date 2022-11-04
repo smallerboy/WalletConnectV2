@@ -6,10 +6,10 @@
 # To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
 #
 
-Pod::Spec.new do |s|
-  s.name             = 'WalletConnectV2'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of WalletConnectV2.'
+Pod::Spec.new do |spec|
+  spec.name             = 'WalletConnectV2'
+  spec.version          = '1.0.0'
+  spec.summary          = 'WalletConnectV2 Pod Support'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,26 +17,91 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  spec.description      = 'Swift implementation of WalletConnect v.2 protocol for native iOS applications.'
 
-  s.homepage         = 'https://github.com/david zhang,/WalletConnectV2'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'david zhang,' => 'zmao008@gmail.com' }
-  s.source           = { :git => 'https://github.com/david zhang,/WalletConnectV2.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  spec.homepage         = 'https://github.com/smallerboy/WalletConnectV2'
 
-  s.ios.deployment_target = '10.0'
+  spec.license          = { :type => 'MIT', :file => 'LICENSE' }
+  spec.author           = { 'david zhang,' => 'zmao008@gmail.com' }
+  spec.source           = { :git => 'https://github.com/smallerboy/WalletConnectV2.git', :tag => spec.version.to_s }
 
-  s.source_files = 'WalletConnectV2/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'WalletConnectV2' => ['WalletConnectV2/Assets/*.png']
+
+  spec.ios.deployment_target = '13.0'
+
+  spec.swift_versions = '5.3'
+
+  # spec.pod_target_xcconfig = {
+  #   'OTHER_SWIFT_FLAGS' => '-DCocoaPods'
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  #s.source_files = 'WalletConnectV2/Classes/**/*'
+
+  #spec.default_subspecs = 'walletConnect'
+
+  # spec.subspec 'walletConnect' do |ss|
+  #   ss.source_files = 'Sources/WalletConnectNetworking/**/*'
+  #   ss.dependency 'WalletConnectV2/WalletConnectPairing'
+  # end
+
+  spec.subspec 'Auth' do |ss|
+    ss.source_files = 'WalletConnectV2/Auth/**/*'
+    ss.dependency 'WalletConnectV2/WalletConnectPairing'
+    ss.dependency "WalletConnectWeb3", "1.0.1"
+  end
+
+  spec.subspec 'WalletConnectChat' do |ss|
+    ss.source_files = 'WalletConnectV2/Chat/**/*'
+    ss.dependency 'WalletConnectV2/WalletConnectNetworking'
+  end
+
+  spec.subspec 'WalletConnectSign' do |ss|
+    ss.source_files = 'WalletConnectV2/WalletConnectSign/**/*'
+    ss.dependency 'WalletConnectV2/WalletConnectPairing'
+  end
+
+  spec.subspec 'WalletConnectPush' do |ss|
+    ss.source_files = 'WalletConnectV2/WalletConnectPush/**/*'
+    ss.dependency 'WalletConnectV2/WalletConnectPairing'
+  end
+
+  spec.subspec 'WalletConnectPairing' do |ss|
+    ss.source_files = 'WalletConnectV2/WalletConnectPairing/**/*'
+    ss.dependency 'WalletConnectV2/WalletConnectNetworking'
+  end
+
+  spec.subspec 'WalletConnectRouter' do |ss|
+    ss.source_files = 'WalletConnectV2/WalletConnectRouter/**/*'
+    ss.platform = :ios
+  end
+
+  spec.subspec 'WalletConnectNetworking' do |ss|
+    ss.source_files = 'WalletConnectV2/WalletConnectNetworking/**/*'
+    ss.dependency 'WalletConnectV2/WalletConnectRelay'
+  end
+
+  spec.subspec 'WalletConnectRelay' do |ss|
+    ss.source_files = 'WalletConnectV2/WalletConnectRelay/**/*'
+    ss.dependency 'WalletConnectV2/WalletConnectKMS'
+  end
+
+  spec.subspec 'WalletConnectKMS' do |ss|
+    ss.source_files = 'WalletConnectV2/WalletConnectKMS/**/*'
+    ss.dependency 'WalletConnectV2/WalletConnectUtils'
+  end
+
+  spec.subspec 'WalletConnectUtils' do |ss|
+    ss.source_files = 'WalletConnectV2/WalletConnectUtils/**/*'
+    ss.dependency 'WalletConnectV2/JSONRPC'
+  end
+
+  spec.subspec 'Commons' do |ss|
+    ss.source_files = 'WalletConnectV2/Commons/**/*'
+  end
+
+  spec.subspec 'JSONRPC' do |ss|
+    ss.source_files = 'WalletConnectV2/JSONRPC/**/*'
+    ss.dependency 'WalletConnectV2/Commons'
+  end
+
+
 end
