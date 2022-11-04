@@ -1,0 +1,22 @@
+{
+  "name": "WalletConnectV2",
+  "version": "0.1.0",
+  "summary": "A short description of WalletConnectV2.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/david zhang,/WalletConnectV2",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "david zhang,": "zmao008@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/david zhang,/WalletConnectV2.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "WalletConnectV2/Classes/**/*"
+}
